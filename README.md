@@ -1,7 +1,7 @@
 # DevBuddy AI
 ### *"From Project Folder to Production Ready in One Click."*
 
-ProjectPilot AI is a production-quality, agentic AI workspace package designed to analyze project directories and prepare them for production launch. Through a sequential pipeline of 5 specialized agents, it automates architecture intelligence, testing, documentation, CI/CD deployment configuration, and social branding.
+DevBuddy AI is a production-quality, agentic AI workspace package designed to analyze project directories and prepare them for production launch. Through a sequential pipeline of 5 specialized agents, it automates architecture intelligence, testing, documentation, CI/CD deployment configuration, and social branding.
 
 ---
 
@@ -94,7 +94,7 @@ The script will automatically detect/create the virtual environment (`venv`), in
 ---
 
 ## 🔌 Extensibility: Adding a New Agent
-ProjectPilot AI is built so new agents can be added in seconds:
+DevBuddy AI is built so new agents can be added in seconds:
 
 1. **Inherit from `BaseAgent` in `agents.py`**:
    ```python
