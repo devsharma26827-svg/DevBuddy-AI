@@ -1,4 +1,4 @@
-# ProjectPilot AI 🚀
+# DevBuddy AI
 ### *"From Project Folder to Production Ready in One Click."*
 
 ProjectPilot AI is a production-quality, agentic AI workspace package designed to analyze project directories and prepare them for production launch. Through a sequential pipeline of 5 specialized agents, it automates architecture intelligence, testing, documentation, CI/CD deployment configuration, and social branding.
