@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DevBuddy AI turns a project folder into a production-ready launch package with five specialized AI agents.">
+  <title>DevBuddy AI — Project readiness, automated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" data-page="dashboard"><span class="brand-mark">DB</span><span>DevBuddy <b>AI</b></span></a>
+    <nav aria-label="Primary navigation">
+      <button class="nav-item active" data-page="dashboard"><span>⌂</span>Overview</button>
+      <button class="nav-item" data-page="pipeline"><span>⌁</span>Run pipeline</button>
+      <button class="nav-item" data-page="settings"><span>⚙</span>Settings</button>
+    </nav>
+    <div class="connection-card">
+      <div class="eyebrow">Connections</div>
+      <div class="connection"><i id="geminiDot"></i><span>Gemini</span><small id="geminiStatus">Checking</small></div>
+      <div class="connection"><i id="githubDot"></i><span>GitHub</span><small id="githubStatus">Checking</small></div>
+      <div class="connection"><i id="linkedinDot"></i><span>LinkedIn</span><small id="linkedinStatus">Checking</small></div>
+    </div>
+    <p class="sidebar-foot">Five agents. One launch-ready project.</p>
+  </aside>
+
+  <main>
+    <header class="topbar"><button class="menu" id="menuBtn" aria-label="Toggle navigation">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+</button><div><span class="live-dot"></span>Workspace online</div><button class="icon-btn" id="settingsShortcut" title="Settings">⚙</button></header>
+
+    <section class="page active" id="dashboardPage">
+      <div class="hero">
+        <div class="hero-copy"><div class="pill">AI-POWERED RELEASE WORKSPACE</div><h1>From codebase to<br><em>launch ready.</em></h1><p>Give DevBuddy a project. Five focused AI agents map its architecture, audit quality, create professional documentation, prepare GitHub, and write your launch story.</p><div class="hero-actions"><button class="btn primary" data-page="pipeline">Analyze a project <span>→</span></button><button class="btn ghost" id="exploreAgents">Meet the agents</button></div></div>
+        <div class="hero-visual" aria-hidden="true"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="core"><span>5</span><small>AI AGENTS</small></div><div class="sat s1">⌘</div><div class="sat s2">✓</div><div class="sat s3">▤</div><div class="sat s4">↗</div><div class="sat s5">in</div></div>
+      </div>
+      <div class="metric-row"><div><strong>5</strong><span>Specialist agents</span></div><div><strong>1</strong><span>Sequential workflow</span></div><div><strong>4</strong><span>Launch deliverables</span></div><div><strong>∞</strong><span>Project possibilities</span></div></div>
+      <div class="section-head" id="agentsSection"><div><span class="eyebrow">THE PIPELINE</span><h2>One agent hands off to the next.</h2></div><p>Every stage builds on verified context from the stage before it, producing a coherent project assessment—not five disconnected opinions.</p></div>
+      <div class="agent-grid" id="agentGrid"></div>
+      <div class="cta"><div><span class="eyebrow">READY WHEN YOU ARE</span><h2>See what your project is capable of.</h2></div><button class="btn light" data-page="pipeline">Start analysis →</button></div>
+    </section>
+
+    <section class="page" id="pipelinePage">
+      <div class="page-title"><div><span class="eyebrow">PROJECT WORKSPACE</span><h1>Run the agent pipeline</h1><p>Select a local project or upload a ZIP. Your source stays on this machine unless you explicitly publish it.</p></div><div class="step-chip"><b id="stepNumber">01</b><span id="stepLabel">Select project</span></div></div>
+      <div class="workspace-grid">
+        <div class="panel source-panel">
+          <div class="panel-title"><span class="number">1</span><div><h3>Choose your project</h3><p>Point DevBuddy to the codebase you want to assess.</p></div></div>
+          <div class="segmented"><button class="active" data-source="path">Local folder</button><button data-source="zip">Upload ZIP</button></div>
+          <form id="pathForm" class="source-form"><label for="projectPath">Absolute folder path</label><div class="input-action"><input id="projectPath" placeholder="C:\Projects\my-application" autocomplete="off"><button class="btn primary" type="submit">Verify</button></div><small>Use the full path to a folder accessible by this server.</small></form>
+          <form id="zipForm" class="source-form hidden"><label class="dropzone" id="dropzone"><input id="zipFile" type="file" accept=".zip"><span class="upload-icon">⇧</span><strong>Drop your project ZIP here</strong><small>or click to browse · maximum 100 MB</small></label><button class="btn primary full" type="submit">Upload project</button></form>
+          <div id="sourceMessage" class="message hidden"></div>
+        </div>
+        <div class="panel project-panel empty" id="projectPanel"><div class="empty-state"><span>⌁</span><h3>No project selected</h3><p>Your file count, size, and directory preview will appear here.</p></div></div>
+      </div>
+      <div class="panel execution-panel" id="executionPanel">
+        <div class="panel-title"><span class="number">2</span><div><h3>Analyze and optimize</h3><p>Run all five specialists in sequence. Live progress appears below.</p></div><button class="btn primary run-btn" id="runPipeline" disabled><span>Run analysis</span> <b>→</b></button></div>
+        <div class="progress-track"><i id="progressBar"></i></div><div class="agent-status-row" id="agentStatuses"></div>
+        <div class="terminal"><div class="terminal-head"><span><i></i><i></i><i></i></span><b>DEV_BUDDY / PIPELINE LOG</b><button id="clearLogs">Clear</button></div><div id="terminalBody" class="terminal-body"><p class="muted">Waiting for a project and API configuration…</p></div></div>
+      </div>
+      <section id="resultsSection" class="results-section hidden"><div class="section-head compact"><div><span class="eyebrow">DELIVERABLES</span><h2>Your project intelligence</h2></div><p>Review, download, publish, and refine each agent’s output.</p></div><div class="tabs" id="resultTabs" role="tablist"></div><div id="resultContent"></div></section>
+    </section>
+
+    <section class="page" id="settingsPage">
+      <div class="page-title"><div><span class="eyebrow">CONFIGURATION</span><h1>Connect your workspace</h1><p>Credentials are held by the Python server and are never echoed back into the browser.</p></div></div>
+      <form id="settingsForm" class="settings-layout">
+        <div class="panel settings-card"><span class="settings-icon purple">✦</span><div><h3>Gemini agents</h3><p>One fallback key is enough. Individual keys can distribute rate limits.</p></div><label>Global API key<input type="password" name="GEMINI_API_KEY" placeholder="Leave blank to keep current key"></label><label>Model<select name="GEMINI_MODEL"><option>gemini-2.5-flash</option><option>gemini-2.5-pro</option><option>gemini-2.0-flash</option></select></label><details><summary>Individual agent keys</summary><div class="key-grid"><label>Agent 1<input type="password" name="GEMINI_KEY_AGENT_1"></label><label>Agent 2<input type="password" name="GEMINI_KEY_AGENT_2"></label><label>Agent 3<input type="password" name="GEMINI_KEY_AGENT_3"></label><label>Agent 4<input type="password" name="GEMINI_KEY_AGENT_4"></label><label>Agent 5<input type="password" name="GEMINI_KEY_AGENT_5"></label></div></details></div>
+        <div class="panel settings-card"><span class="settings-icon dark">⌘</span><div><h3>GitHub</h3><p>Create a repository and publish the reviewed project when you choose.</p></div><label>Personal access token<input type="password" name="GITHUB_TOKEN" placeholder="Leave blank to keep current token"></label></div>
+        <div class="panel settings-card"><span class="settings-icon blue">in</span><div><h3>LinkedIn</h3><p>Validate permissions, refine generated copy, and publish your launch update.</p></div><label>Access token<input type="password" name="LINKEDIN_ACCESS_TOKEN"></label><label>Client ID<input name="LINKEDIN_CLIENT_ID"></label><label>Client secret<input type="password" name="LINKEDIN_CLIENT_SECRET"></label></div>
+        <div class="save-bar"><span id="saveMessage">Blank secret fields preserve existing values.</span><button class="btn primary" type="submit">Save configuration</button></div>
+      </form>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

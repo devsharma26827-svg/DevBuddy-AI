@@ -1,0 +1,9 @@
+a = input("Enter Number 1 : ")
+b = input("Enter Number 2 : ")
+x, y = a, b
+while y != 0:
+    x, y = y, x % y
+hcf = x
+lcm = (a * b) // hcf
+print("HCF :", hcf)
+print("LCM :", lcm)
