@@ -26,10 +26,12 @@ from agents import AgentRegistry, ProjectIntelligenceAgent
 from engine import OrchestrationEngine
 import utils
 
-load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent
-FRONTEND_DIR = BASE_DIR / "frontend"
+ROOT_DIR = BASE_DIR.parent
+FRONTEND_DIR = ROOT_DIR / "frontend"
+ENV_PATH = ROOT_DIR / ".env"
+
+load_dotenv(ENV_PATH)
 CONFIG_KEYS = (
     "GEMINI_API_KEY", "GEMINI_MODEL", "GEMINI_KEY_AGENT_1",
     "GEMINI_KEY_AGENT_2", "GEMINI_KEY_AGENT_3", "GEMINI_KEY_AGENT_4",
@@ -177,7 +179,7 @@ def run_pipeline():
         return _error("Select a project before running the pipeline.")
 
     # Dynamic Key Loading: Reload the latest environment variables from .env
-    dotenv_path = str(BASE_DIR / ".env")
+    dotenv_path = str(ENV_PATH)
     import dotenv
     dotenv.load_dotenv(dotenv_path, override=True)
 
@@ -320,7 +322,7 @@ def get_config():
 def save_config():
     _, state = _state()
     body = request.get_json(silent=True) or {}
-    dotenv_path = str(BASE_DIR / ".env")
+    dotenv_path = str(ENV_PATH)
     import dotenv
     for key in CONFIG_KEYS:
         if key in body:
@@ -342,4 +344,4 @@ def too_large(_):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=int(os.getenv("PORT", "5000")), debug=False, threaded=True)
+    app.run(host=os.getenv("HOST", "127.0.0.1"), port=int(os.getenv("PORT", "5000")), debug=False, threaded=True)

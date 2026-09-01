@@ -43,15 +43,17 @@ graph TD
 ## 2. System Architecture & Tech Stack
 
 ```
-├─ backend.py          # Flask API, session management, and static file server
-├─ agents.py           # Class definitions for the 5 AI agents & Pydantic schemas
-├─ engine.py           # Sequential orchestration engine for executing agents
-├─ gemini_config.py    # Centralized Gemini Client wrapper & model fallback order
-├─ utils.py            # File system utilities (Zip extraction, directory tree generation)
-└─ frontend/           # SPA Client Files
-   ├─ index.html       # DOM structure and layout panels
-   ├─ script.js        # Global state, fetch handlers, and SSE streaming
-   └─ styles.css       # Layout styles and breakpoints
+├─ backend/            # Python backend application
+│  ├─ backend.py       # Flask API, session management, and static file server
+│  ├─ agents.py        # Class definitions for the 5 AI agents & Pydantic schemas
+│  ├─ engine.py        # Sequential orchestration engine for executing agents
+│  ├─ gemini_config.py # Centralized Gemini Client wrapper & model fallback order
+│  └─ utils.py         # File system utilities (Zip extraction, directory tree generation)
+├─ frontend/           # SPA Client Files
+│  ├─ index.html       # DOM structure and layout panels
+│  ├─ script.js        # Global state, fetch handlers, and SSE streaming
+│  └─ styles.css       # Layout styles and breakpoints
+├─ docker-compose.yml  # Optional Docker orchestration for backend and frontend
 ```
 
 ### Frontend Architecture

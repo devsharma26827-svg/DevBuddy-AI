@@ -6,11 +6,12 @@ and interactive project upload/analysis flow using the AI Agent engine.
 
 import os
 import tempfile
+from pathlib import Path
 import streamlit as st  # type: ignore[import-not-found]
 from dotenv import load_dotenv # type: ignore[import-not-found]
 
 # Load environment variables from .env file if available
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 # Import core modules
 from agents import AgentRegistry

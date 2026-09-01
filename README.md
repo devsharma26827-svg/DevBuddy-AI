@@ -17,12 +17,13 @@ DevBuddy AI is a production-quality, agentic AI workspace package designed to an
 ## ⚙️ Project Architecture
 The project follows a clean, single-point entry layout optimized for ease of comprehension and extension:
 
-- **`backend.py`**: Flask API adapter and web server. It delegates all domain work to the existing agents and engine.
+- **`backend/backend.py`**: Flask API adapter and web server. It delegates all domain work to the existing agents and engine.
 - **`frontend/`**: Responsive HTML, CSS, and vanilla JavaScript interface.
-- **`agents.py`**: Defines `BaseAgent` and implementations of the five default agents, alongside the `AgentRegistry`.
-- **`engine.py`**: Orchestration execution engine containing logic for sequentially running registered agents and streaming status/logs.
-- **`utils.py`**: Helper routines for processing zip files, scanning folder contents, and creating directory trees.
-- **`requirements.txt`**: Minimal requirements file.
+- **`backend/agents.py`**: Defines `BaseAgent` and implementations of the five default agents, alongside the `AgentRegistry`.
+- **`backend/engine.py`**: Orchestration execution engine containing logic for sequentially running registered agents and streaming status/logs.
+- **`backend/utils.py`**: Helper routines for processing zip files, scanning folder contents, and creating directory trees.
+- **`backend/requirements.txt`**: Minimal backend requirements file.
+- **`docker-compose.yml`**: Optional Docker setup for running the backend and static frontend containers.
 
 ---
 
@@ -76,7 +77,7 @@ The script will automatically detect/create the virtual environment (`venv`), in
 
 4. **Install Dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip install -r backend/requirements.txt
    ```
 
 5. **Configure Environment Variables:**
@@ -87,16 +88,28 @@ The script will automatically detect/create the virtual environment (`venv`), in
 
 6. **Run the DevBuddy Web Application:**
    ```bash
-   python backend.py
+   python backend/backend.py
    ```
    Open `http://127.0.0.1:5000` in your browser.
+
+---
+
+### Option 3: Docker
+
+Build and run the backend and frontend containers:
+```bash
+docker compose build
+docker compose up
+```
+
+Open `http://127.0.0.1:8080` for the frontend. The backend is also exposed on `http://127.0.0.1:5000`.
 
 ---
 
 ## 🔌 Extensibility: Adding a New Agent
 DevBuddy AI is built so new agents can be added in seconds:
 
-1. **Inherit from `BaseAgent` in `agents.py`**:
+1. **Inherit from `BaseAgent` in `backend/agents.py`**:
    ```python
    class SecurityAuditorAgent(BaseAgent):
        def __init__(self):
@@ -116,7 +129,7 @@ DevBuddy AI is built so new agents can be added in seconds:
                "artifacts": {"security_audit.md": "..."}
            }
    ```
-2. **Register the Agent** inside the `AgentRegistry` initializer in `agents.py`:
+2. **Register the Agent** inside the `AgentRegistry` initializer in `backend/agents.py`:
    ```python
    self.register(SecurityAuditorAgent())
    ```

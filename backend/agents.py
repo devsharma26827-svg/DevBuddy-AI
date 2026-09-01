@@ -235,7 +235,7 @@ class BaseAgent(ABC):
         
         # Load the latest environment variables from .env dynamically
         try:
-            dotenv_path = Path(__file__).resolve().parent / ".env"
+            dotenv_path = Path(__file__).resolve().parent.parent / ".env"
             dotenv.load_dotenv(str(dotenv_path), override=True)
         except Exception:
             pass

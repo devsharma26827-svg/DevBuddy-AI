@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "=========================================="
-echo "      ProjectPilot AI Startup Script      "
+echo "      DevBuddy AI Startup Script      "
 echo "=========================================="
 echo ""
 
@@ -39,7 +39,7 @@ fi
 # 4. Check/Install Dependencies
 echo "[INFO] Checking and installing/updating dependencies..."
 python -m pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 if [ $? -ne 0 ]; then
     echo "[ERROR] Failed to install dependencies."
     exit 1
@@ -66,4 +66,4 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 echo "[INFO] Running backend server..."
-python backend.py
+python backend/backend.py
